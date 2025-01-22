@@ -8,43 +8,15 @@ using System.Threading.Tasks;
 
 namespace DAL.Implementations
 {
-    public class CategoryDAL : ICategoryDAL
+    public class CategoryDAL : DALGenericoImpl<Category>, ICategoryDAL
     {
         private NorthWindContext _context;
 
-        public CategoryDAL(NorthWindContext context)
+        public CategoryDAL(NorthWindContext context): base(context)
         {
             _context = context;
         }
 
-        public bool AddCategory(Category category)
-        {
-            try
-            {
-                _context.Add(category);
-                _context.SaveChanges();
-                return true;
-            }
-            catch (Exception)
-            {
-
-                return false;
-            }
-        }
-
-        public bool DeleteCategory(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Category> GetCategories()
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool UpdateCategory(Category category)
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }
