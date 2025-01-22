@@ -1,4 +1,5 @@
-﻿using BackEnd.Services.Interfaces;
+﻿using BackEnd.DTO;
+using BackEnd.Services.Interfaces;
 using DAL.Interfaces;
 using Entities.Entities;
 
@@ -14,9 +15,16 @@ namespace BackEnd.Services.Implementations
             _unidadDeTrabajo= unidadDeTrabajo;
         }
 
-        public void AddCategory(Category category)
+        public void AddCategory(CategoryDTO category)
         {
-           _unidadDeTrabajo.CategoryDAL.Add(category);
+
+            var categoryEntity = new Category()
+            {
+                CategoryName = category.CategoryName
+                
+            };  
+
+            _unidadDeTrabajo.CategoryDAL.Add(categoryEntity);
             _unidadDeTrabajo.Complete();
         }
 
