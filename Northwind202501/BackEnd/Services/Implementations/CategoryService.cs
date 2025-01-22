@@ -7,16 +7,17 @@ namespace BackEnd.Services.Implementations
     public class CategoryService : ICategoryService
     {
 
-        private ICategoryDAL _categoryDAL;
+        IUnidadDeTrabajo _unidadDeTrabajo;
 
-        public CategoryService(ICategoryDAL categoryDAL)
+        public CategoryService(IUnidadDeTrabajo unidadDeTrabajo)
         {
-            _categoryDAL = categoryDAL;
+            _unidadDeTrabajo= unidadDeTrabajo;
         }
 
         public void AddCategory(Category category)
         {
-           _categoryDAL.AddCategory(category);  
+           _unidadDeTrabajo.CategoryDAL.Add(category);
+            _unidadDeTrabajo.Complete();
         }
 
         public void DeleteCategory(int id)
@@ -31,7 +32,8 @@ namespace BackEnd.Services.Implementations
 
         public void UpdateCategory(Category category)
         {
-            throw new NotImplementedException();
+           _unidadDeTrabajo.CategoryDAL.Update(category);
+            _unidadDeTrabajo.Complete();
         }
     }
 }
