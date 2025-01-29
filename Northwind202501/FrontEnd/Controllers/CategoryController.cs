@@ -1,4 +1,5 @@
 ﻿using FrontEnd.Helpers.Interfaces;
+using FrontEnd.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,7 +25,8 @@ namespace FrontEnd.Controllers
         // GET: CategoryController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var result = _categoryHelper.GetCategory(id);
+            return View(result);
         }
 
         // GET: CategoryController/Create
@@ -36,10 +38,11 @@ namespace FrontEnd.Controllers
         // POST: CategoryController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(CategoryViewModel category)
         {
             try
             {
+                _categoryHelper.Add(category);
                 return RedirectToAction(nameof(Index));
             }
             catch
