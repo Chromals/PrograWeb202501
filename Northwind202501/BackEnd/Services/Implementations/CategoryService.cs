@@ -23,7 +23,14 @@ namespace BackEnd.Services.Implementations
                 CategoryName = category.CategoryName
             };
         }
-
+        CategoryDTO Convertir(Category category)
+        {
+            return new CategoryDTO
+            {
+                CategoryId = category.CategoryId,
+                CategoryName = category.CategoryName
+            };
+        }
 
         public void AddCategory(CategoryDTO category)
         {
@@ -41,9 +48,17 @@ namespace BackEnd.Services.Implementations
             _unidadDeTrabajo.Complete();
         }
 
-        public List<Category> GetCategories()
+        public List<CategoryDTO> GetCategories()
         {
-            throw new NotImplementedException();
+            var result = _unidadDeTrabajo.CategoryDAL.GetAll();
+
+            List<CategoryDTO> categories = new List<CategoryDTO>();
+            foreach (var item in result)
+            {
+                categories
+                    .Add(Convertir(item));
+            }
+            return categories;
         }
 
         public void UpdateCategory(CategoryDTO category)
@@ -51,6 +66,13 @@ namespace BackEnd.Services.Implementations
             var categoryEntity = Convertir(category);
             _unidadDeTrabajo.CategoryDAL.Update(categoryEntity);
             _unidadDeTrabajo.Complete();
+        }
+
+        public CategoryDTO GetCategoryById(int id)
+        {
+            var result = _unidadDeTrabajo.CategoryDAL.Get(id);
+            return Convertir(result);
+
         }
     }
 }

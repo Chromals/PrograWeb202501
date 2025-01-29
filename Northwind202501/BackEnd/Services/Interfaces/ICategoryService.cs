@@ -10,5 +10,6 @@ namespace BackEnd.Services.Interfaces
         void UpdateCategory(CategoryDTO category);
         void DeleteCategory(int id);
         List<CategoryDTO> GetCategories();
+        CategoryDTO GetCategoryById(int id);
     }
 }
