@@ -15,14 +15,20 @@ namespace BackEnd.Services.Implementations
             _unidadDeTrabajo= unidadDeTrabajo;
         }
 
+        Category Convertir (CategoryDTO category)
+        {
+            return new Category
+            {
+                CategoryId = category.CategoryId,
+                CategoryName = category.CategoryName
+            };
+        }
+
+
         public void AddCategory(CategoryDTO category)
         {
 
-            var categoryEntity = new Category()
-            {
-                CategoryName = category.CategoryName
-                
-            };  
+            var categoryEntity = Convertir(category);
 
             _unidadDeTrabajo.CategoryDAL.Add(categoryEntity);
             _unidadDeTrabajo.Complete();
@@ -30,7 +36,9 @@ namespace BackEnd.Services.Implementations
 
         public void DeleteCategory(int id)
         {
-            throw new NotImplementedException();
+            var category = new Category { CategoryId=id };
+            _unidadDeTrabajo.CategoryDAL.Remove(category);
+            _unidadDeTrabajo.Complete();
         }
 
         public List<Category> GetCategories()
@@ -38,9 +46,10 @@ namespace BackEnd.Services.Implementations
             throw new NotImplementedException();
         }
 
-        public void UpdateCategory(Category category)
+        public void UpdateCategory(CategoryDTO category)
         {
-           _unidadDeTrabajo.CategoryDAL.Update(category);
+            var categoryEntity = Convertir(category);
+            _unidadDeTrabajo.CategoryDAL.Update(categoryEntity);
             _unidadDeTrabajo.Complete();
         }
     }
