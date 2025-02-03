@@ -1,4 +1,5 @@
 ﻿using BackEnd.DTO;
+using BackEnd.Services.Implementations;
 using BackEnd.Services.Interfaces;
 using Entities.Entities;
 using Microsoft.AspNetCore.Mvc;
@@ -20,16 +21,16 @@ namespace BackEnd.Controllers
 
         // GET: api/<ShipperController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<ShipperDTO> Get()
         {
-            return new string[] { "value1", "value2" };
+            return _shipperService.GetShippers();
         }
 
         // GET api/<ShipperController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public ShipperDTO Get(int id)
         {
-            return "value";
+            return _shipperService.GetShipperById(id);
         }
 
         // POST api/<ShipperController>
@@ -42,7 +43,7 @@ namespace BackEnd.Controllers
 
         // PUT api/<ShipperController>/5
         [HttpPut]
-        public void Put( [FromBody] Shipper shipper)
+        public void Put( [FromBody] ShipperDTO shipper)
         {
             _shipperService.UpdateShipper(shipper);
 
@@ -52,6 +53,7 @@ namespace BackEnd.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            _shipperService.DeleteShipper(id);
         }
     }
 }

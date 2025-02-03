@@ -7,8 +7,9 @@ namespace BackEnd.Services.Interfaces
     {
 
         void AddShipper(ShipperDTO Shipper);
-        void UpdateShipper(Shipper Shipper);
+        void UpdateShipper(ShipperDTO Shipper);
         void DeleteShipper(int id);
-        List<Shipper> GetShippers();
+        List<ShipperDTO> GetShippers();
+        ShipperDTO GetShipperById(int id);
     }
 }
