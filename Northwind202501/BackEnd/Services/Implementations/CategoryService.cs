@@ -50,7 +50,7 @@ namespace BackEnd.Services.Implementations
 
         public List<CategoryDTO> GetCategories()
         {
-            var result = _unidadDeTrabajo.CategoryDAL.GetAll();
+            var result = _unidadDeTrabajo.CategoryDAL.GetAllCategories();
 
             List<CategoryDTO> categories = new List<CategoryDTO>();
             foreach (var item in result)
