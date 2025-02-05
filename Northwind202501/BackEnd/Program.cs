@@ -20,7 +20,7 @@ builder.Services.AddSwaggerGen();
 builder.Logging.ClearProviders();
 builder.Host.UseSerilog((ctx,lc   )=> lc
     .WriteTo.File("Logs/log.txt", rollingInterval: RollingInterval.Day) 
-    .MinimumLevel.Information()
+    .MinimumLevel.Error()
     );  
 
 #endregion
