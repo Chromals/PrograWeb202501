@@ -31,7 +31,9 @@ builder.Services.AddScoped<IUnidadDeTrabajo, UnidadDeTrabajo>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ICategoryDAL, CategoryDAL>();
 builder.Services.AddScoped<ISupplierDAL, SupplierDAL>();
-builder.Services.AddScoped<IProductDAL, ProductDAL>();  
+builder.Services.AddScoped<IProductDAL, ProductDAL>();
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<ISupplierService, SupplierService>();
 
 #endregion
 

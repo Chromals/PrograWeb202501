@@ -4,7 +4,7 @@ namespace BackEnd.Services.Interfaces
 {
     public interface ISupplierService
     {
-        SupplierDTO Get();
+        SupplierDTO Get(int id);
         List<SupplierDTO> GetAll();
 
         SupplierDTO Add(SupplierDTO supplierDTO);
