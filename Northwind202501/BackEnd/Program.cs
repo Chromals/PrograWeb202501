@@ -30,6 +30,8 @@ builder.Services.AddDbContext<NorthWindContext>();
 builder.Services.AddScoped<IUnidadDeTrabajo, UnidadDeTrabajo>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ICategoryDAL, CategoryDAL>();
+builder.Services.AddScoped<ISupplierDAL, SupplierDAL>();
+builder.Services.AddScoped<IProductDAL, ProductDAL>();  
 
 #endregion
 
