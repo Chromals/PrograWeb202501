@@ -100,10 +100,11 @@ namespace FrontEnd.Controllers
         // POST: ProductController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(ProductViewModel product)
         {
             try
             {
+                _productHelper.DeleteProduct(product.ProductId);
                 return RedirectToAction(nameof(Index));
             }
             catch

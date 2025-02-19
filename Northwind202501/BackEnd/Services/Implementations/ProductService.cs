@@ -66,7 +66,7 @@ namespace BackEnd.Services.Implementations
             Product product = new Product { ProductId = id };
             _Unidad.ProductDAL.Remove(product);
             _Unidad.Complete();
-            throw new NotImplementedException();
+          
         }
 
         public ProductDTO GetById(int id)

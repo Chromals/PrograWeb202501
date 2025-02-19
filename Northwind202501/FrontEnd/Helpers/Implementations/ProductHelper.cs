@@ -55,7 +55,7 @@ namespace FrontEnd.Helpers.Implementations
 
         public void DeleteProduct(int id)
         {
-            HttpResponseMessage responseMessage = _repository.DeleteResponse("api/product" + id.ToString());
+            HttpResponseMessage responseMessage = _repository.DeleteResponse("api/product/" + id.ToString());
             if (responseMessage != null)
             {
                 var content = responseMessage.Content;
