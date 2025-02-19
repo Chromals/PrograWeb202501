@@ -72,11 +72,13 @@ namespace FrontEnd.Controllers
         // POST: ProductController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(ProductViewModel product)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+
+                _productHelper.EdiProduct(product);
+                return RedirectToAction("Details", new {id= product.ProductId});
             }
             catch
             {
@@ -87,7 +89,12 @@ namespace FrontEnd.Controllers
         // GET: ProductController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            ProductViewModel product = _productHelper.GetById(id);
+            product.CategoryName = _categoryHelper
+                                    .GetCategory(product.CategoryId)
+                                    .CategoryName;
+
+            return View(product);
         }
 
         // POST: ProductController/Delete/5
