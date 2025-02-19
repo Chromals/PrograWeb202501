@@ -27,7 +27,12 @@ namespace FrontEnd.Controllers
         // GET: ProductController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            ProductViewModel product = _productHelper.GetById(id);
+            product.CategoryName = _categoryHelper
+                                    .GetCategory(product.CategoryId)
+                                    .CategoryName;
+          
+            return View(product);
         }
 
         // GET: ProductController/Create

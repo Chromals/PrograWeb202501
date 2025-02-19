@@ -16,13 +16,17 @@ namespace BackEnd.Services.Implementations
 
         ProductDTO Convertir(Product product)
         {
+            var supplier = _Unidad.SupplierDAL.Get((int)product.SupplierId);
+
+
             return new ProductDTO
             {
                 ProductId = product.ProductId,
                 ProductName = product.ProductName,
                 SupplierId = product.SupplierId,
                 CategoryId = product.CategoryId,
-                Discontinued = product.Discontinued
+                Discontinued = product.Discontinued,
+                SupplierName = supplier.CompanyName
             };
         }
 
@@ -68,6 +72,7 @@ namespace BackEnd.Services.Implementations
         public ProductDTO GetById(int id)
         {
             var product = _Unidad.ProductDAL.Get(id);
+            
             return Convertir(product);
         }
 
