@@ -3,6 +3,7 @@ using BackEnd.Services.Interfaces;
 using DAL.Implementations;
 using DAL.Interfaces;
 using Entities.Entities;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +14,17 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
+#region Serilog
+
+builder.Logging.ClearProviders();
+builder.Host.UseSerilog((ctx,lc   )=> lc
+    .WriteTo.File("Logs/log.txt", rollingInterval: RollingInterval.Day) 
+    .MinimumLevel.Error()
+    );  
+
+#endregion
+
 #region DI
 builder.Services.AddDbContext<NorthWindContext>();
 builder.Services.AddScoped<IUnidadDeTrabajo, UnidadDeTrabajo>();
@@ -20,6 +32,10 @@ builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IShipperService, ShipperService>();
 builder.Services.AddScoped<IShipperDAL, ShipperDAL>();
 builder.Services.AddScoped<ICategoryDAL, CategoryDAL>();
+builder.Services.AddScoped<ISupplierDAL, SupplierDAL>();
+builder.Services.AddScoped<IProductDAL, ProductDAL>();
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<ISupplierService, SupplierService>();
 
 #endregion
 
