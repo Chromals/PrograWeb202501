@@ -3,6 +3,7 @@ using BackEnd.Services.Interfaces;
 using DAL.Implementations;
 using DAL.Interfaces;
 using Entities.Entities;
+using Microsoft.EntityFrameworkCore;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -26,7 +27,11 @@ builder.Host.UseSerilog((ctx,lc   )=> lc
 #endregion
 
 #region DI
-builder.Services.AddDbContext<NorthWindContext>();
+builder.Services.AddDbContext<NorthWindContext>(optionsAction => 
+                    optionsAction
+                    .UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
+
+    );
 builder.Services.AddScoped<IUnidadDeTrabajo, UnidadDeTrabajo>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ICategoryDAL, CategoryDAL>();
