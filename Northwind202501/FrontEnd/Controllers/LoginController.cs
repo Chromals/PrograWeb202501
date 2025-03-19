@@ -21,6 +21,7 @@ namespace FrontEnd.Controllers
         public ActionResult Login() 
         {
             UserViewModel user = new UserViewModel();
+            //user.ReturnUrl = ReturnURL;
             return View(user);
         }
 
@@ -60,7 +61,7 @@ namespace FrontEnd.Controllers
                         var principal = new ClaimsPrincipal(identity);
 
                         HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, new AuthenticationProperties()
-                        { IsPersistent = true });
+                        { IsPersistent = false });
 
                         return RedirectToAction("Index", "Home");
                     }

@@ -5,7 +5,7 @@ using System.Diagnostics;
 
 namespace FrontEnd.Controllers
 {
-    [Authorize(Roles ="Prueba")
+    [Authorize
         ]
     public class HomeController : Controller
     {

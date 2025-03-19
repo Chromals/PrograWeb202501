@@ -12,6 +12,7 @@ namespace FrontEnd.Controllers
 
         public CategoryController(ICategoryHelper categoryHelper)
         {
+           
             _categoryHelper = categoryHelper;
         }
 
