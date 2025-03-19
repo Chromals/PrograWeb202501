@@ -10,7 +10,7 @@ namespace BackEnd.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    [Authorize(Roles ="Admin")]
     public class CategoryController : ControllerBase
     {
         ICategoryService _categoryService;
@@ -25,6 +25,7 @@ namespace BackEnd.Controllers
 
         // GET: api/<CategoryController>
         [HttpGet]
+        [Authorize(Roles = "SuperUser")]
         public IEnumerable<CategoryDTO> Get()
         {
             _logger.LogDebug("Obtener todas las categorías");
