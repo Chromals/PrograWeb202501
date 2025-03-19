@@ -9,6 +9,7 @@ namespace FrontEnd.Helpers.Implementations
     {
         IServiceRepository _ServiceRepository;
 
+        public string Token { get; set; }
         CategoryViewModel Convertir(CategoryAPI category)
         {
             CategoryViewModel categoryViewModel = new CategoryViewModel
@@ -23,6 +24,8 @@ namespace FrontEnd.Helpers.Implementations
         public CategoryHelper(IServiceRepository serviceRepository)
         {
             _ServiceRepository = serviceRepository;
+           
+
         }
 
         public CategoryViewModel Add(CategoryViewModel category)
@@ -43,6 +46,9 @@ namespace FrontEnd.Helpers.Implementations
 
         public List<CategoryViewModel> GetCategories()
         {
+            _ServiceRepository.Client.DefaultRequestHeaders.Authorization =
+               new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", Token);
+
             HttpResponseMessage responseMessage = _ServiceRepository.GetResponse("api/Category");
             List<CategoryAPI> categories = new List<CategoryAPI>();
             if (responseMessage != null)

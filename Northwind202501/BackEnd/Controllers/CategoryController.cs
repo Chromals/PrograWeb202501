@@ -25,7 +25,7 @@ namespace BackEnd.Controllers
 
         // GET: api/<CategoryController>
         [HttpGet]
-        [Authorize(Roles = "SuperUser")]
+       
         public IEnumerable<CategoryDTO> Get()
         {
             _logger.LogDebug("Obtener todas las categorías");
