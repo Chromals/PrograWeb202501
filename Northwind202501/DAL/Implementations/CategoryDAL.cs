@@ -28,13 +28,14 @@ namespace DAL.Implementations
 
        public List<Category> GetAllCategories()
         {
-            string query = "sp_GetAllCategories";
+            
+            var result = _context.Categories.ToList();
+            
 
-            var resul = _context.Categories
-                .FromSqlRaw(query);
+            
                 
 
-            return resul.ToList();  
+            return result;  
         }
 
         public bool Add(Category entity)
