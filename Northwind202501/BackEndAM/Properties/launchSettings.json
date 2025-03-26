@@ -10,7 +10,7 @@
       "dotnetRunMessages": true,
       "applicationUrl": "http://localhost:5023"
     },
-    "localhost": {
+    "Production": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",
