@@ -31,7 +31,8 @@ namespace FrontEnd.Controllers
             product.CategoryName = _categoryHelper
                                     .GetCategory(product.CategoryId)
                                     .CategoryName;
-          
+            product.Category = _categoryHelper.GetCategory(product.CategoryId);
+
             return View(product);
         }
 

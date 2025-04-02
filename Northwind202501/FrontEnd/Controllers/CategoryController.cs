@@ -12,12 +12,14 @@ namespace FrontEnd.Controllers
 
         public CategoryController(ICategoryHelper categoryHelper)
         {
+           
             _categoryHelper = categoryHelper;
         }
 
         // GET: CategoryController
         public ActionResult Index()
         {
+            _categoryHelper.Token = HttpContext.Session.GetString("Token");
             var result = _categoryHelper.GetCategories();   
             return View(result);
         }
@@ -75,16 +77,18 @@ namespace FrontEnd.Controllers
         // GET: CategoryController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var result = _categoryHelper.GetCategory(id);
+            return View(result);
         }
 
         // POST: CategoryController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(CategoryViewModel category)
         {
             try
             {
+                _categoryHelper.Delete(category.CategoryId);
                 return RedirectToAction(nameof(Index));
             }
             catch

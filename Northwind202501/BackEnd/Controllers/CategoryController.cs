@@ -1,6 +1,7 @@
 ﻿using BackEnd.DTO;
 using BackEnd.Services.Interfaces;
 using Entities.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -9,6 +10,7 @@ namespace BackEnd.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    
     public class CategoryController : ControllerBase
     {
         ICategoryService _categoryService;
@@ -23,6 +25,7 @@ namespace BackEnd.Controllers
 
         // GET: api/<CategoryController>
         [HttpGet]
+       
         public IEnumerable<CategoryDTO> Get()
         {
             _logger.LogDebug("Obtener todas las categorías");
