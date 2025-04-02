@@ -42,7 +42,7 @@ namespace FrontEnd.Helpers.Implementations
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            HttpResponseMessage response = _ServiceRepository.DeleteResponse("api/Category/" + id.ToString());
         }
 
         public List<CategoryViewModel> GetCategories()

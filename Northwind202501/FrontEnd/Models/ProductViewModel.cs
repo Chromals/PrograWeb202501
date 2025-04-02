@@ -20,6 +20,8 @@ namespace FrontEnd.Models
         [Display(Name = "Nombre de Compañía")]
         public string CategoryName { get; set; }
 
+        public CategoryViewModel ? Category { get; set; }
+
         public bool Discontinued { get; set; }
 
     }

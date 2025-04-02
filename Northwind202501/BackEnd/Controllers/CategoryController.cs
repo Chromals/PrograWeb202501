@@ -10,7 +10,7 @@ namespace BackEnd.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles ="Admin")]
+    
     public class CategoryController : ControllerBase
     {
         ICategoryService _categoryService;
